@@ -1,5 +1,5 @@
 # attendance-management-v
-
+作成中
 
 ## Firebaseの料金プラン
 
@@ -28,13 +28,14 @@ VUE_APP_STORAGEBUCKET=
 VUE_APP_MESSAGINGSENDERID=
 VUE_APP_APPID=
 VUE_APP_MEASUREMENTID=
+```
 
-## Project setup
+### Project setup
 ```
 npm install
 ```
 
-```
+
 ### Compiles and hot-reloads for development
 ```
 npm run serve
