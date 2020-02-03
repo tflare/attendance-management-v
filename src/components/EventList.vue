@@ -7,12 +7,22 @@
 </template>
 
 <script>
+import { getEventInfo } from '../_helpers/eventInfo.js';
 export default {
   name: 'EventList',
   props: {
     msg: String
+  },
+
+  methods: {
+    getEventList() {
+      //書いている途中
+      eventId, eventTitle  = getEventInfo()
+
+    }
   }
 }
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
