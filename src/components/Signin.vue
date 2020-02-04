@@ -1,11 +1,60 @@
 <template>
-  <div class="signin">
-    <h2>Sign in</h2>
-    <input type="text" placeholder="Username" v-model="username">
-    <input type="password" placeholder="Password" v-model="password">
-    <button @click="signIn">Signin</button>
-  </div>
+<v-app id="inspire">
+  <v-content>
+    <v-container
+      class="fill-height"
+      fluid
+    >
+      <v-row
+        align="center"
+        justify="center"
+      >
+        <v-col
+          cols="12"
+          sm="8"
+          md="4"
+        >
+          <v-card class="elevation-12">
+            <v-toolbar
+              color="primary"
+              dark
+              flat
+            >
+              <v-toolbar-title>Login form</v-toolbar-title>
+              <v-spacer />
+
+            </v-toolbar>
+            <v-card-text>
+              <v-form>
+                <v-text-field
+                  label="Login"
+                  name="login"
+                  v-model="username"
+                  type="text"
+                />
+
+                <v-text-field
+                  id="password"
+                  v-model="password"
+                  label="Password"
+                  name="password"
+                  type="password"
+                />
+              </v-form>
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer />
+              <v-btn color="primary" @click="signIn">Login</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-content>
+</v-app>
 </template>
+
+
 
 <script>
 import firebase from 'firebase'
@@ -33,33 +82,3 @@ export default {
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-.signin {
-  margin-top: 20px;
-
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center
-}
-input {
-  margin: 10px 0;
-  padding: 10px;
-}
-</style>
