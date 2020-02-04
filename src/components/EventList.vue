@@ -1,44 +1,36 @@
 <template>
-  <div class="eventList">
-
-
-
-  </div>
+  <v-list three-line>
+    <template v-for="(event, index) in events">
+        <v-list-item
+            :key="index"
+        >
+        <v-list-item-content>
+          <v-list-item-subtitle class="text--primary subheading">{{event.title}}</v-list-item-subtitle>
+          <v-list-item-subtitle class="text--primary subheading">{{event.startedAt}}〜{{event.endedAt}}</v-list-item-subtitle>
+          <v-list-item-subtitle class="text--primary subheading">参加者：{{event.accepted}}補欠者：{{event.waiting}}</v-list-item-subtitle>
+        </v-list-item-content>
+      </v-list-item>
+      <v-divider :key="event.id"></v-divider>
+    </template>
+  </v-list>
 </template>
 
 <script>
-import { getEventInfo } from '../_helpers/eventInfo.js';
-export default {
-  name: 'EventList',
-  props: {
-    msg: String
-  },
+  import firebase from 'firebase';
 
-  methods: {
-    getEventList() {
-      //書いている途中
-      eventId, eventTitle  = getEventInfo()
+  export default {
+    name: 'EventList',
+    data: () => ({
+      events: [],
+    }),
 
-    }
+    firestore() {
+      return {
+        // firestoreのeventコレクションを参照
+        events: firebase.firestore().collection('event')
+
+      }
+    },
   }
-}
 
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>

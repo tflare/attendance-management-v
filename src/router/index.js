@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Signin from '@/components/Signin.vue'
-import firebase from 'firebase'
+import firebase from 'firebase';
 
 Vue.use(VueRouter)
 
@@ -28,8 +28,6 @@ router.beforeEach((to, from, next) => {
   let requiresAuth = to.matched.some(record => record.meta.requiresAuth)
   let currentUser = firebase.auth().currentUser
   if (requiresAuth) {
-    // このルートはログインされているかどうか認証が必要です。
-    // もしされていないならば、ログインページにリダイレクトします。
     if (!currentUser) {
       next({
         path: '/signin',
@@ -39,7 +37,7 @@ router.beforeEach((to, from, next) => {
       next()
     }
   } else {
-    next() // next() を常に呼び出すようにしてください!
+    next()
   }
 })
 

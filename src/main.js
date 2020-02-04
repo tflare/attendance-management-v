@@ -1,11 +1,15 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import firebase from 'firebase'
+import vuetify from './plugins/vuetify';
+import firebase from 'firebase';
+import 'firebase/firestore';
+import { firestorePlugin }  from 'vuefire'
 
 Vue.config.productionTip = false
+Vue.use(firestorePlugin)
 
-const firebaseConfig = {
+const firebaseApp = {
   apiKey: process.env.VUE_APP_APIKEY,
   authDomain: process.env.VUE_APP_AUTHDOMAIN,
   databaseURL: process.env.VUE_APP_DATABASEURL,
@@ -15,9 +19,11 @@ const firebaseConfig = {
   appId: process.env.VUE_APP_APPID,
   measurementId: process.env.VUE_APP_MEASUREMENTID,
 };
-firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseApp);
+
 
 new Vue({
   router,
+  vuetify,
   render: h => h(App)
 }).$mount('#app')
