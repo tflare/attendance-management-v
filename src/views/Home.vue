@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <EventList msg="Welcome to Your Vue.js App"/>
+
+    <EventList />
   </div>
 </template>
 
