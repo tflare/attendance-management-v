@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import EventUser from '../views/EventUser.vue'
 import Signin from '@/components/Signin.vue'
 import firebase from 'firebase';
 
@@ -10,6 +11,7 @@ Vue.use(VueRouter)
 const routes = [
   {path: '/', component: Home },
   {path: '/signin', component: Signin},
+  {path: '/eventuser', component: EventUser},
   {path: '/addevent', component: Home, meta: { requiresAuth: true } },
   {
     // 未定義パスへの対応。トップページへリダイレクト

@@ -2,7 +2,7 @@
 <v-app>
   <v-app-bar app color="primary" dark>
     <v-toolbar-title>勉強会出席管理システム</v-toolbar-title>
-    <v-spacer></v-spacer>
+    <v-spacer/>
     <v-btn text rounded href="/">ホーム</v-btn>
     <div v-if="user.uid" key="login">
        <v-btn text rounded href="a" @click="signout">サインアウト</v-btn>
