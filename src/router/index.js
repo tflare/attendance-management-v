@@ -8,8 +8,9 @@ Vue.use(VueRouter)
 
 
 const routes = [
-  {path: '/', component: Home, meta: { requiresAuth: true } },
+  {path: '/', component: Home },
   {path: '/signin', component: Signin},
+  {path: '/addevent', component: Home, meta: { requiresAuth: true } },
   {
     // 未定義パスへの対応。トップページへリダイレクト
     path: '*',

@@ -1,25 +1,24 @@
 <template>
-  <v-app>
+<v-app>
+  <v-app-bar app color="primary" dark>
+    <v-toolbar-title>勉強会出席管理システム</v-toolbar-title>
+    <v-spacer></v-spacer>
+    <v-btn text rounded href="/">ホーム</v-btn>
+    <div v-if="user.uid" key="login">
+       <v-btn text rounded href="a" @click="signout">サインアウト</v-btn>
+    </div>
+    <div v-else key="logout">
+      <v-btn text rounded href="/signin">サインイン</v-btn>
+    </div>
+  </v-app-bar>
+  <v-content>
+  <router-view />
+  </v-content>
+  <v-footer app color="primary" dark>
+      Hiroyuki Abe
+  </v-footer>
 
-      <div id="app">
-        <div id="nav">
-          <router-link to="/">Home</router-link> |
-          <!-- ログイン時にはサインアウトのリンクを表示 -->
-          <div v-if="user.uid" key="login">
-            [{{ user.email }}]
-            <a href="a" @click="signout">サインアウト</a>
-          </div>
-          <!-- 未ログイン時にはサインインのリンクを表示 -->
-          <div v-else key="logout">
-            <router-link to="/signin">signin</router-link>
-          </div>
-        </div>
-        <router-view/>
-
-      </div>
-
-
-  </v-app>
+</v-app>
 </template>
 
 <script>
