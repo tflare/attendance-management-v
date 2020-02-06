@@ -8,7 +8,7 @@
        <v-btn text rounded href="a" @click="signout">サインアウト</v-btn>
     </div>
     <div v-else key="logout">
-      <v-btn text rounded href="/signin">サインイン</v-btn>
+      <v-btn text rounded :to="{path:'signin'}">サインイン</v-btn>
     </div>
   </v-app-bar>
   <v-content>

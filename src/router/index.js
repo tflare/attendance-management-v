@@ -11,7 +11,7 @@ Vue.use(VueRouter)
 const routes = [
   {path: '/', component: Home },
   {path: '/signin', component: Signin},
-  {path: '/eventuser', name: 'eventuser', component: EventUser},
+  {path: '/eventuser/:eventID', name: 'eventuser', component: EventUser},
   {path: '/addevent', component: Home, meta: { requiresAuth: true } },
   {
     // 未定義パスへの対応。トップページへリダイレクト

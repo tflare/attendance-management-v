@@ -26,7 +26,7 @@
     firestore() {
       return {
         // firestoreのattendanceコレクションを参照
-        attendances: firebase.firestore().collection('attendance').where("eventID", "==", 151286)
+        attendances: firebase.firestore().collection('attendance').where("eventID", "==", Number(this.$route.params.eventID))
 
       }
     },
