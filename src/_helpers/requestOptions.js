@@ -1,7 +1,7 @@
 import firebase from 'firebase'
 
 export function requestOptions() {
-    
+
     const requestOptions = {
         method: 'GET',
         headers: authHeader()
@@ -10,7 +10,7 @@ export function requestOptions() {
 }
 
 function authHeader() {
-    
+
     const user = firebase.auth().currentUser;
 
     if (user && user.token) {
