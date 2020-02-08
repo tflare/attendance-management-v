@@ -16,7 +16,7 @@
       </template>
     </v-list>
 
-    <div v-if="authenticatedUser">
+    <div v-if="user.uid" key="login">
       <v-container fluid>
         https://connpass.com/event/161217/の数字の部分をを入力してください。<br />
         URLが https://connpass.com/event/161217/ のイベントの場合、イベントIDは 161217 になります。
@@ -42,19 +42,16 @@
 
   export default {
     name: 'EventList',
-    data: () => ({
-      events: [],
-      authenticatedUser: ''
-    }),
-
-    created(){
-      firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-          this.authenticatedUser = true;
-        } else {
-          this.authenticatedUser = false;
-        }
-      });
+    data() {
+      return {
+        events: [],
+        user: {}
+      }
+    },
+    created() {
+      firebase.auth().onAuthStateChanged(user => {
+        this.user = user ? user : {}
+      })
     },
     firestore() {
       return {
