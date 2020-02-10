@@ -1,11 +1,11 @@
 <template>
   <v-container fluid>
-    <v-row v-for="(idx, key) in rowCount" :key="key">
-      <span v-for="(attendance, key2) in itemCountInRow(idx)" :key="key2">
+    <v-row v-for="(row, key) in rowCount" :key="key">
+      <div v-for="(attendance, key2) in itemCountInRow(row)" :key="key2">
         <v-col>{{attendance.userID}}</v-col>
         <v-col><v-btn small color="primary">出席</v-btn><v-btn small color="error">欠席</v-btn></v-col>
         <v-divider/>
-      </span>
+      </div>
     </v-row>
   </v-container>
 </template>
