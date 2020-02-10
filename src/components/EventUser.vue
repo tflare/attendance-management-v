@@ -15,9 +15,12 @@
 
   export default {
     name: 'EventUser',
-    data: () => ({
-      attendances: [],
-    }),
+
+    data () {
+      return {
+        attendances: []
+      }
+    },
 
     firestore() {
       return {
@@ -46,8 +49,8 @@
     },
 
     methods:{
-      itemCountInRow:function(idx){
-        return this.attendances.slice((idx - 1) * this.colNumber, idx * this.colNumber)
+      itemCountInRow:function(row){
+        return this.attendances.slice((row - 1) * this.colNumber, row * this.colNumber)
       }
     }
   }
