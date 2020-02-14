@@ -3,7 +3,7 @@
     <v-row v-for="(row, key) in rowCount" :key="key">
       <div v-for="(attendance, key2) in itemCountInRow(row)" :key="key2">
         <v-col>{{attendance.userID}}</v-col>
-        <v-col><v-btn small color="primary">出席</v-btn><v-btn small color="error">欠席</v-btn></v-col>
+        <v-col><v-btn small color="primary" @click="updateAttendance(attendance, true)" :disabled="attendance.attendance">出席</v-btn><v-btn small color="error" :disabled="!attendance.attendance" @click="updateAttendance(attendance, false)">欠席</v-btn></v-col>
         <v-divider/>
       </div>
     </v-row>
@@ -51,6 +51,14 @@
     methods:{
       itemCountInRow:function(row){
         return this.attendances.slice((row - 1) * this.colNumber, row * this.colNumber)
+      },
+
+      updateAttendance:function(doc, attend){
+        doc.attendance = attend;
+        doc.updatedAt = firebase.firestore.FieldValue.serverTimestamp();
+
+        firebase.firestore().collection('attendance').doc(doc.id).set(doc)
+        this.$firestoreRefs.attendances.set(doc)
       }
     }
   }
