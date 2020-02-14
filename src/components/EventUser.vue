@@ -58,6 +58,11 @@
         doc.updatedAt = firebase.firestore.FieldValue.serverTimestamp();
 
         firebase.firestore().collection('attendance').doc(doc.id).set(doc)
+        //.then(() => {
+        //  console.log('attendance updated')
+        //}, reason => {
+        //  console.error('attendance update error', reason)
+        //})
         this.$firestoreRefs.attendances.set(doc)
       }
     }
