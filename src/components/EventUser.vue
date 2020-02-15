@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-row v-for="(row, key) in rowCount" :key="key">
       <div v-for="(attendance, key2) in itemCountInRow(row)" :key="key2">
-        <v-col>{{attendance.userID}}</v-col>
+        <v-col>{{attendance.displayName}}</v-col>
         <v-col><v-btn small color="primary" @click="updateAttendance(attendance, false)" :disabled="!attendance.attendance">出席</v-btn><v-btn small color="error" :disabled="attendance.attendance" @click="updateAttendance(attendance, true)">欠席</v-btn></v-col>
         <v-divider/>
       </div>
@@ -25,7 +25,7 @@
     firestore() {
       return {
         // firestoreのattendanceコレクションを参照
-        attendances: firebase.firestore().collection('attendance').where("eventID", "==", Number(this.$route.params.eventID))
+        attendances: firebase.firestore().collection('attendance').where("eventID", "==", Number(this.$route.params.eventID)).where("presenter", "==", false)
 
       }
     },

@@ -9,7 +9,7 @@
             <v-list-item-subtitle class="text--primary subheading">{{event.title}}</v-list-item-subtitle>
             <v-list-item-subtitle class="text--primary subheading">{{event.startedAt.toDate()}}〜{{event.endedAt.toDate()}}</v-list-item-subtitle>
             <v-list-item-subtitle class="text--primary subheading">参加者：{{event.accepted}} 補欠者：{{event.waiting}}</v-list-item-subtitle>
-            <v-list-item-subtitle class="text--primary subheading"><v-btn small color="success" rounded :to="{path:'eventuser/' + event.eventID}">詳細画面へ</v-btn></v-list-item-subtitle>
+            <v-list-item-subtitle class="text--primary subheading"><v-btn small color="success" rounded :to="{path:'eventuser/' + event.id}">詳細画面へ</v-btn></v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
         <v-divider :key="event.id"></v-divider>
@@ -63,7 +63,7 @@
       pageCreate(){
         const eventID = document.getElementById('inputEventID').value;
         createEventInfo(eventID);
-        alert("イベント情報作成中です。60秒後に再読込してください。");
+        alert("イベント情報作成中です。少々お待ちください");
       }
     },
   }
