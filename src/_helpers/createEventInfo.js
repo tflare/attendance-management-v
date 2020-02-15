@@ -5,6 +5,4 @@ export function createEventInfo(eventID) {
 
   const functions = firebase.app().functions('asia-northeast1');
   functions.httpsCallable('attendance2db')(message)
-
-
 }

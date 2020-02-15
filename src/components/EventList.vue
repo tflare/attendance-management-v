@@ -38,7 +38,7 @@
 
 <script>
   import firebase from 'firebase';
-  import {createEventInfo} from '../_helpers/eventInfo';
+  import {createEventInfo} from '../_helpers/createEventInfo';
 
   export default {
     name: 'EventList',
@@ -63,6 +63,7 @@
       pageCreate(){
         const eventID = document.getElementById('inputEventID').value;
         createEventInfo(eventID);
+        alert("イベント情報作成中です。60秒後に再読込してください。");
       }
     },
   }
