@@ -6,7 +6,7 @@ service cloud.firestore {
       allow read;
       allow write: if request.auth.uid != null;
     }
-    match /attendance/{attendance} {
+    match /event/{event}/users/{user} {
       allow read, update
       allow create, delete: if request.auth.uid != null;
     }

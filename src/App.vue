@@ -2,7 +2,7 @@
 <v-app>
   <v-app-bar app color="primary" dark>
     <v-btn to="/" text="true">
-      <v-toolbar-title>勉強会出席管理システム</v-toolbar-title>
+      <v-toolbar-title>（テスト中）勉強会出席管理システム</v-toolbar-title>
     </v-btn>
     <v-spacer/>
     <v-btn text rounded href="/">ホーム</v-btn>

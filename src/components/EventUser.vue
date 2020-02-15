@@ -7,9 +7,9 @@
     </v-card>
     <v-container fluid>
       <v-row v-for="(row, key) in rowCount" :key="key">
-        <div v-for="(attendance, key2) in itemCountInRow(row)" :key="key2">
-          <v-col>{{attendance.displayName}}</v-col>
-          <v-col><v-btn small color="primary" @click="updateAttendance(attendance, false)" :disabled="!attendance.attendance">出席</v-btn><v-btn small color="error" :disabled="attendance.attendance" @click="updateAttendance(attendance, true)">欠席</v-btn></v-col>
+        <div v-for="(user, key2) in itemCountInRow(row)" :key="key2">
+          <v-col>{{user.displayName}}</v-col>
+          <v-col><v-btn small color="primary" @click="updateUser(user, false)" :disabled="!user.attendance">出席</v-btn><v-btn small color="error" :disabled="user.attendance" @click="updateUser(user, true)">欠席</v-btn></v-col>
           <v-divider/>
         </div>
       </v-row>
@@ -26,15 +26,15 @@
     data () {
       return {
         event: "",
-        attendances: []
+        users: []
       }
     },
 
     firestore() {
+      const eventRef = firebase.firestore().collection('event').doc(this.$route.params.eventID);
       return {
-        event: firebase.firestore().collection('event').doc(this.$route.params.eventID),
-        // firestoreのattendanceコレクションを参照
-        attendances: firebase.firestore().collection('attendance').where("eventID", "==", Number(this.$route.params.eventID)).where("presenter", "==", false)
+        event: eventRef,
+        users: eventRef.collection('users').where("presenter", "==", false)
       }
     },
 
@@ -52,26 +52,27 @@
       },
 
       rowCount:function(){
-        return Math.ceil(this.attendances.length / this.colNumber);
+        return Math.ceil(this.users.length / this.colNumber);
       },
     },
 
     methods:{
       itemCountInRow:function(row){
-        return this.attendances.slice((row - 1) * this.colNumber, row * this.colNumber)
+        return this.users.slice((row - 1) * this.colNumber, row * this.colNumber)
       },
 
-      updateAttendance:function(doc, attend){
+      updateUser:function(doc, attend){
         doc.attendance = attend;
         doc.updatedAt = firebase.firestore.FieldValue.serverTimestamp();
 
-        firebase.firestore().collection('attendance').doc(doc.id).set(doc)
+        const eventRef = firebase.firestore().collection('event').doc(this.$route.params.eventID);
+        eventRef.collection('users').doc(doc.id).set(doc)
         //.then(() => {
         //  console.log('attendance updated')
         //}, reason => {
         //  console.error('attendance update error', reason)
         //})
-        this.$firestoreRefs.attendances.set(doc)
+        this.$firestoreRefs.users.set(doc)
       }
     }
   }
