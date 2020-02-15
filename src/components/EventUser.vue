@@ -1,13 +1,20 @@
 <template>
-  <v-container fluid>
-    <v-row v-for="(row, key) in rowCount" :key="key">
-      <div v-for="(attendance, key2) in itemCountInRow(row)" :key="key2">
-        <v-col>{{attendance.displayName}}</v-col>
-        <v-col><v-btn small color="primary" @click="updateAttendance(attendance, false)" :disabled="!attendance.attendance">出席</v-btn><v-btn small color="error" :disabled="attendance.attendance" @click="updateAttendance(attendance, true)">欠席</v-btn></v-col>
-        <v-divider/>
-      </div>
-    </v-row>
-  </v-container>
+  <v-app id="inspire">
+    <v-card app>
+      <v-toolbar app dark class="indigo">
+        <v-toolbar-title class="headline">{{ event.title }}</v-toolbar-title>
+      </v-toolbar>
+    </v-card>
+    <v-container fluid>
+      <v-row v-for="(row, key) in rowCount" :key="key">
+        <div v-for="(attendance, key2) in itemCountInRow(row)" :key="key2">
+          <v-col>{{attendance.displayName}}</v-col>
+          <v-col><v-btn small color="primary" @click="updateAttendance(attendance, false)" :disabled="!attendance.attendance">出席</v-btn><v-btn small color="error" :disabled="attendance.attendance" @click="updateAttendance(attendance, true)">欠席</v-btn></v-col>
+          <v-divider/>
+        </div>
+      </v-row>
+    </v-container>
+  </v-app>
 </template>
 
 <script>
@@ -18,15 +25,16 @@
 
     data () {
       return {
+        event: "",
         attendances: []
       }
     },
 
     firestore() {
       return {
+        event: firebase.firestore().collection('event').doc(this.$route.params.eventID),
         // firestoreのattendanceコレクションを参照
         attendances: firebase.firestore().collection('attendance').where("eventID", "==", Number(this.$route.params.eventID)).where("presenter", "==", false)
-
       }
     },
 
