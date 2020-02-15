@@ -1,5 +1,4 @@
-# attendance-management-v
-作成中
+# 勉強会出席者管理ツール for Connpass
 
 ## Firebaseの料金プラン
 
@@ -14,6 +13,12 @@ Spark プランの無料使用量を含むので、課金されることはな�
 初期設定でasia-northeast1を選択することをおすすめします。
 ロケーションをasia-northeast1に揃えることで実行速度の向上が期待できます。
 
+## 設定(作成中)
+1. git@github.com:tflare/attendance-management-v.git をクローン
+2. package.jsonの場所でnpm install
+3. .firebasercのprojectを自分のものに書き換え
+4. vue.jsのFirebase設定を実施
+5. npm run serveで動作確認
 
 ## vue.jsのFirebase設定
 ```
@@ -30,26 +35,8 @@ VUE_APP_APPID=
 VUE_APP_MEASUREMENTID=
 ```
 
-### Project setup
-```
-npm install
-```
+## テストサイト
+[テストサイト](https://attendance-management-v.firebaseapp.com)
 
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
