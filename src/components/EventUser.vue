@@ -9,7 +9,10 @@
       <v-row v-for="(row, key) in rowCount" :key="key">
         <div v-for="(user, key2) in itemCountInRow(row)" :key="key2">
           <v-col>{{user.displayName}}</v-col>
-          <v-col><v-btn small color="primary" @click="updateUser(user, false)" :disabled="!user.attendance">出席</v-btn><v-btn small color="error" :disabled="user.attendance" @click="updateUser(user, true)">欠席</v-btn></v-col>
+          <v-col>
+            <v-btn small color="primary" @click="updateUser(user, false)" :disabled="!user.attendance">出席</v-btn>
+            <v-btn small color="error" :disabled="user.attendance" @click="updateUser(user, true)">欠席</v-btn>
+          </v-col>
           <v-divider/>
         </div>
       </v-row>

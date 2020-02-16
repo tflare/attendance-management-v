@@ -38,7 +38,7 @@
 
 <script>
   import firebase from 'firebase';
-  import {createEventInfo} from '../_helpers/createEventInfo';
+  import {createEvent} from '../_helpers/createEvent';
 
   export default {
     name: 'EventList',
@@ -55,14 +55,13 @@
     },
     firestore() {
       return {
-        // firestoreのeventコレクションを参照
         events: firebase.firestore().collection('event')
       }
     },
     methods: {
       pageCreate(){
         const eventID = document.getElementById('inputEventID').value;
-        createEventInfo(eventID);
+        createEvent(eventID);
         alert("イベント情報作成中です。少々お待ちください");
       }
     },

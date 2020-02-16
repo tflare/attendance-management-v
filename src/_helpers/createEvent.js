@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 
-export function createEventInfo(eventID) {
+export function createEvent(eventID) {
   const message = { "eventID": eventID };
 
   const functions = firebase.app().functions('asia-northeast1');
