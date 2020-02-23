@@ -6,17 +6,17 @@
               :key="index"
           >
           <v-list-item-content>
-            <v-list-item-subtitle class="text--primary subheading">{{event.title}}</v-list-item-subtitle>
-            <v-list-item-subtitle class="text--primary subheading">{{formatListDate(event.startedAt.toDate(), event.endedAt.toDate())}}</v-list-item-subtitle>
-            <v-list-item-subtitle class="text--primary subheading">参加者：{{event.accepted}} 補欠者：{{event.waiting}}</v-list-item-subtitle>
-            <v-list-item-subtitle class="text--primary subheading"><v-btn small color="success" rounded :to="{path:'eventuser/' + event.id}">詳細画面へ</v-btn></v-list-item-subtitle>
+            <v-list-item-title>{{event.title}}</v-list-item-title>
+            <v-list-item-subtitle>{{formatListDate(event.startedAt.toDate(), event.endedAt.toDate())}}</v-list-item-subtitle>
+            <v-list-item-subtitle>参加者：{{event.accepted}} 補欠者：{{event.waiting}}</v-list-item-subtitle>
+            <v-list-item-subtitle><v-btn small color="success" rounded :to="{path:'eventuser/' + event.id}">詳細画面へ</v-btn></v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
         <v-divider :key="event.id"></v-divider>
       </template>
     </v-list>
 
-    <div v-if="user.uid" key="login">
+    <div v-if="authUser.uid" key="login">
       <v-container fluid>
         https://connpass.com/event/161217/の数字の部分をを入力してください。<br />
         URLが https://connpass.com/event/161217/ のイベントの場合、イベントIDは 161217 になります。
@@ -46,12 +46,12 @@
     data() {
       return {
         events: [],
-        user: {}
+        authUser: {}
       }
     },
     created() {
-      firebase.auth().onAuthStateChanged(user => {
-        this.user = user ? user : {}
+      firebase.auth().onAuthStateChanged(authUser => {
+        this.authUser = authUser ? authUser : {}
       })
     },
     firestore() {
