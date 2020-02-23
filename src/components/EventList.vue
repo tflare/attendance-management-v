@@ -7,7 +7,7 @@
           >
           <v-list-item-content>
             <v-list-item-subtitle class="text--primary subheading">{{event.title}}</v-list-item-subtitle>
-            <v-list-item-subtitle class="text--primary subheading">{{event.startedAt.toDate()}}〜{{event.endedAt.toDate()}}</v-list-item-subtitle>
+            <v-list-item-subtitle class="text--primary subheading">{{formatListDate(event.startedAt.toDate(), event.endedAt.toDate())}}</v-list-item-subtitle>
             <v-list-item-subtitle class="text--primary subheading">参加者：{{event.accepted}} 補欠者：{{event.waiting}}</v-list-item-subtitle>
             <v-list-item-subtitle class="text--primary subheading"><v-btn small color="success" rounded :to="{path:'eventuser/' + event.id}">詳細画面へ</v-btn></v-list-item-subtitle>
           </v-list-item-content>
@@ -39,6 +39,7 @@
 <script>
   import firebase from 'firebase';
   import {createEvent} from '../_helpers/createEvent';
+  import {formatDate} from '../_helpers/formatDate';
 
   export default {
     name: 'EventList',
@@ -63,6 +64,9 @@
         const eventID = document.getElementById('inputEventID').value;
         createEvent(eventID);
         alert("イベント情報作成中です。少々お待ちください");
+      },
+      formatListDate(startDate, EndDate){
+        return(formatDate(startDate, EndDate));
       }
     },
   }
