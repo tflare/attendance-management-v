@@ -2,7 +2,7 @@
   <v-app id="inspire">
     <v-card app>
       <v-toolbar app dark class="indigo">
-        <v-toolbar-title class="headline">{{ event.title }}</v-toolbar-title>
+        <v-toolbar-title class="headline">{{ event.title }}  {{formatListDate(event.startedAt.toDate(), event.endedAt.toDate())}}</v-toolbar-title>
       </v-toolbar>
     </v-card>
     <v-container fluid>
@@ -22,6 +22,7 @@
 
 <script>
   import firebase from 'firebase';
+  import {formatDate} from '../_helpers/formatDate';
 
   export default {
     name: 'EventUser',
@@ -76,6 +77,10 @@
         //  console.error('attendance update error', reason)
         //})
         this.$firestoreRefs.users.set(doc)
+      },
+
+      formatListDate(startDate, EndDate){
+        return(formatDate(startDate, EndDate));
       }
     }
   }

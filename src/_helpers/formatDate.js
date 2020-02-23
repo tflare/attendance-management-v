@@ -1,6 +1,6 @@
 
 export function formatDate (startDate, EndDate) {
-  let format = 'YYYY-MM-DD(day) hh:mm 〜 endh:endm';
+  let format = '日時：YYYY-MM-DD(day) hh:mm 〜 endh:endm';
   format = format.replace(/YYYY/g, startDate.getFullYear());
   format = format.replace(/MM/g, ('0' + (startDate.getMonth() + 1)).slice(-2));
   format = format.replace(/DD/g, ('0' + startDate.getDate()).slice(-2));
