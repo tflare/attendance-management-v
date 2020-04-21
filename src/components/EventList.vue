@@ -18,7 +18,7 @@
 
     <div v-if="authUser.uid" key="login">
       <v-container fluid>
-        https://connpass.com/event/161217/の数字の部分をを入力してください。<br />
+        https://connpass.com/event/161217/の数字の部分を入力してください。<br />
         URLが https://connpass.com/event/161217/ のイベントの場合、イベントIDは 161217 になります。
         <v-row>
           <v-col cols="2">
